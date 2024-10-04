@@ -3,9 +3,8 @@ import pandas as pd
 import base64
 import random
 from transformers import pipeline
-from ai_tutor import correct_text
+from openai_tutor import generate_content
 
-token = st.secrets["hf_token"]
 
 @st.cache_data
 def get_data():
@@ -38,8 +37,6 @@ if 'user_text' not in st.session_state:
 
 
 
-
-
 # put image and buttin in the center
 st.markdown("<style>div.stButton {display: flex; justify-content: center;}</style>", unsafe_allow_html=True)
 st.markdown("<style>div.stImage {display: flex; justify-content: center;}</style>", unsafe_allow_html=True)
@@ -51,7 +48,7 @@ icon_path = "content/icon_ecrit.svg"
 def green_header(text):
     st.markdown(
         f"""
-        <h2 style='color: #4ABC96;'>{text}</h1>
+        <h2 style='color: #4ABC96;'>{text}</h2>
         """, unsafe_allow_html=True
     )
 
@@ -111,7 +108,7 @@ if st.session_state.main_button:
         
         with st.spinner('Correction en cours, veuillez patienter...'):
         # get correction from the model
-            correction = add_quote(correct_text(st.session_state.user_text, token))
+            correction = add_quote(generate_content(st.session_state.user_text))
             print(correction)
             st.write(correction)
 
