@@ -20,8 +20,7 @@ def make_prompt(text):
     Donne moi uniquement la réponse comme output
 
     Texte soumis : {text}
-
-"""
+    """
 
 def correct_text(text, hf_token):
     client = InferenceClient(model="meta-llama/Meta-Llama-3-70B-Instruct", token=hf_token)
