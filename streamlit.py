@@ -96,7 +96,7 @@ st.text_area(
     label, 
     key="user_text",
     label_visibility="collapsed", 
-    placeholder="Écrivez un texte d'au moins 30 mot", 
+    placeholder="Écrivez un texte d'au moins 30 mots", 
     height=200
 )
 st.button('Valider', type="primary", key="main_button")
