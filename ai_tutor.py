@@ -24,7 +24,7 @@ Réponse de l'étudiant : "{answer}"
 
 Importante: Évalue uniquement le texte fourni, sans le réécrire ni en générer un nouveau.[/INST]</s>"""
 
-def correct_text(text, hf_token):
+def correct_text(question, answer, hf_token):
     client = InferenceClient(model="meta-llama/Meta-Llama-3-70B-Instruct", token=hf_token)
-    output = client.text_generation(make_prompt(text), max_new_tokens=4000)
+    output = client.text_generation(make_prompt(question, answer), max_new_tokens=4000)
     return output
