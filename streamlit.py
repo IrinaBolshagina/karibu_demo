@@ -111,7 +111,7 @@ if st.session_state.main_button:
         
         with st.spinner('Correction en cours, veuillez patienter...'):
         # get correction from the model
-            correction = add_quote(correct_text(st.session_state.user_text, token))
+            correction = add_quote(correct_text(st.session_state.text, st.session_state.user_text, token))
             print(correction)
             st.write(correction)
 

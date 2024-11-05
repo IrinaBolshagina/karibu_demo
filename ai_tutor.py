@@ -1,26 +1,28 @@
 from huggingface_hub import InferenceClient
 
 
-def make_prompt(text):
-    return f"""
-    Tu es un enseignant expérimenté et bienveillant, spécialisé dans la correction des textes d'étudiants.
-    Ta tâche consiste à fournir trois éléments essentiels dans un format Markdown, en gardant la réponse courte, bienveillante, et concise, uniquement comme ceci :
+def make_prompt(question, answer):
+    return f"""<s>[INST] Tu es un enseignant qui doit évaluer la réponse d'un étudiant.
 
-    1. **Vocabulaire :** Donne une analyse du vocabulaire utilisé, en mentionnant les points forts et les suggestions d'amélioration.
+Question posée à l'étudiant : "{question}"
 
-    2. **Grammaire :** Corrige toutes les erreurs de francais. Utilise le format suivant :
-    - "mot incorrect" → "mot correct" (explication rapide de l'erreur).
-    Si le texte ne contient aucune erreur, indique que le texte est correct avec le format suivant :
-    **Grammaire :** Le texte est correct. Félicitations !
+Réponse de l'étudiant : "{answer}"
 
-    3. **Appréciation générale :** Fournis un commentaire sur la clarté et la pertinence du texte, ainsi que des encouragements pour l'étudiant.
+Évalue cette réponse en suivant exactement ce format :
 
-    Assure-toi que ta réponse est bien structurée, concise, bienveillante, et entièrement formatée en Markdown.
-    Commence directement avec **Vocabulaire**, **Grammaire**, et **Appréciation générale**.
-    Donne moi uniquement la réponse comme output
+**Compréhension**
+[Analyse si la réponse correspond à la question posée]
 
-    Texte soumis : {text}
-    """
+**Vocabulaire**
+[Analyse du vocabulaire utilisé]
+
+**Grammaire**
+[Corrections nécessaires OU "Le texte est correct. Félicitations !"]
+
+**Appréciation générale**
+[Bref commentaire encourageant]
+
+Importante: Évalue uniquement le texte fourni, sans le réécrire ni en générer un nouveau.[/INST]</s>"""
 
 def correct_text(text, hf_token):
     client = InferenceClient(model="meta-llama/Meta-Llama-3-70B-Instruct", token=hf_token)
