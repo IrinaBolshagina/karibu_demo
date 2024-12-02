@@ -2,7 +2,7 @@ from huggingface_hub import InferenceClient
 
 
 def make_prompt(question, answer):
-    return f"""<s>[INST] Tu es un enseignant qui doit évaluer la réponse d'un étudiant.
+    return f"""Tu es un enseignant qui doit évaluer la réponse d'un étudiant.
 
 Question posée à l'étudiant : "{question}"
 
@@ -22,7 +22,8 @@ Réponse de l'étudiant : "{answer}"
 **Appréciation générale**
 [Bref commentaire encourageant]
 
-Importante: Évalue uniquement le texte fourni, sans le réécrire ni en générer un nouveau.[/INST]</s>"""
+Importante: Évalue uniquement le texte fourni, sans le réécrire ni en générer un nouveau.
+"""
 
 def correct_text(question, answer, hf_token):
     client = InferenceClient(model="meta-llama/Meta-Llama-3-70B-Instruct", token=hf_token)
