@@ -6,19 +6,14 @@ def make_prompt(question, answer):
     Question : "{question}"
     Ma réponse : "{answer}"
     Évalue cette réponse en suivant exactement ce format :
-
-    **Compréhension**
-    [Analyse si la réponse correspond à la question posée]
-
-    **Vocabulaire**
-    [Analyse du vocabulaire utilisé]
-    
-    **Grammaire**
-    [Corrections nécessaires OU "Le texte est correct. Félicitations !"]
-    
-    **Appréciation générale**
-    [Bref commentaire encourageant]
-    
+    <b>Compréhension</b>
+    <p>[Analyse si la réponse correspond à la question posée]</p>
+    <b>Vocabulaire</b>
+    <p>[Analyse du vocabulaire utilisé]</p>
+    <b>Grammaire</b>
+    <p>[Corrections nécessaires OU "Le texte est correct. Félicitations !"]</p>
+    <b>Appréciation générale</b>
+    <p>[Bref commentaire encourageant]</p>
     Importante: Évalue uniquement le texte fourni, sans le réécrire ni en générer un nouveau.
     """
 
