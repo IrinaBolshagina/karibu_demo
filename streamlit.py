@@ -28,6 +28,7 @@ classifier = get_model()
 
 if 'text' not in st.session_state:
     st.session_state.text = random.choice(beginner)
+    # st.session_state.text = "Qui est votre chanteur ou chanteuse préféré(e) ? Pourquoi cette personne vous plaît-elle autant ? Racontez un souvenir ou une anecdote liée à cet artiste qui vous a particulièrement marqué(e)."
 
 if 'user_input' not in st.session_state:
     st.session_state.user_input = ""
@@ -104,9 +105,9 @@ st.button('Valider', type="primary", key="main_button")
 # Button
 if st.session_state.main_button:
 
-    if len(st.session_state.user_text.split()) < 30:
-        st.warning(f"Le texte doit contenir au moins 30 mots")
-    else:
+    # if len(st.session_state.user_text.split()) < 30:
+    #     st.warning(f"Le texte doit contenir au moins 30 mots")
+    # else:
         green_header('Correction')
         
         with st.spinner('Correction en cours, veuillez patienter...'):
@@ -130,6 +131,9 @@ if st.session_state.main_button:
             st.session_state.text = random.choice(intermediate)
         else:
             st.session_state.text = random.choice(beginner)
+        
+        st.session_state.text = "Qui est votre chanteur ou chanteuse préféré(e) ? Pourquoi cette personne vous plaît-elle autant ? Racontez un souvenir ou une anecdote liée à cet artiste qui vous a particulièrement marqué(e)."
+        
         st.write("Nous avons choisi une nouvelle activité pour vous.  Cliquez ici pour continuer !")
         if st.button("Commencer l'exercice suivant", type="primary"):
             st.session_state["user_text"] = ""
